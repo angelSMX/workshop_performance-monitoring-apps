@@ -71,6 +71,7 @@ public class MicronautResource {
         return msg;
     }
 
+    @SuppressWarnings("unchecked")
     @Get(uri = "/memory", produces = MediaType.TEXT_PLAIN)
     public String memory(@QueryValue(value = "bites", defaultValue = "10") Integer bites,
                          @QueryValue(value = "db", defaultValue = "false") Boolean db,
@@ -81,6 +82,7 @@ public class MicronautResource {
         if (bites == null) {
             bites = 1;
         }
+        @SuppressWarnings("rawtypes")
         HashMap hunger = new HashMap<>();
         for (int i = 0; i < bites * 1024 * 1024; i += 8192) {
             byte[] bytes = new byte[8192];
